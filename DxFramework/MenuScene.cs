@@ -12,8 +12,8 @@ namespace DxFramework
 		public MenuScene() : base() { instance=this;}
 		public override void init()
 		{
-			base.init();
-			var Hana = new Button(1);
+		    base.init();
+            var Hana =new Button(1);
 			Hana.setGraph("resource/img/angel.png");
 			Hana.top = new Vector2(300, 150);
 			Hana.setTLight(200);
