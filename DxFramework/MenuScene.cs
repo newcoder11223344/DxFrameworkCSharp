@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DxFramework.FrameWork;
 
 namespace DxFramework
 {
@@ -10,25 +11,25 @@ namespace DxFramework
 	{
 		public static MenuScene instance {get;private set; }
 		public MenuScene() : base() { instance=this;}
-		public override void init()
+		public override void subInit()
 		{
-		    base.init();
-            var Hana =new Button(1);
-			Hana.setGraph("resource/img/angel.png");
-			Hana.top = new Vector2(300, 150);
-			Hana.setTLight(200);
-			Hana.draggableFlag = true;
-			Hana.setClickedAction(() => { nextScene = GameScene.instance; });
-			var devil = new Button(1);
-			devil.setGraph("resource/img/devil.png");
-			var Back = new Graphic(new Vector2(0, 0), "resource/img/back.png",0);
-			Back.top =new  Vector2(0, 0);
+		  
+            var Hana =new AutoDrawnButton(1);
+		    Hana.DraggableFlag = true;
+		    //Hana.Canvas("resource/img/angel.png");
+		    //Hana.Top = new Vector2(300, 150);
+		    //Hana.setTLight(200);
+		    //Hana.DraggableFlag = true;
+		    //Hana.setClickedAction(() => { });
+		    //var devil = new AutoDrawnButton(1);
+		    //devil.setGraph("resource/img/devil.png");
+		    //var Back = new Graphic(new Vector2(0, 0), "resource/img/back.png", 0);
+		    //Back.Top = new Vector2(0, 0);
 		}
-		public override Scene update()
+		public override void subUpdate()
 		{
-			base.update();
-			//if(Hana.getClickedTimes!=0);//次シーンへ
-			return nextScene;
+			
+
 		}
 	}
 }

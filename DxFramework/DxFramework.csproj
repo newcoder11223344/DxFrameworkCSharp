@@ -38,17 +38,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicInput.cs" />
-    <Compile Include="Button.cs" />
-    <Compile Include="DrawableBase.cs" />
-    <Compile Include="DxDLL.cs" />
+    <Compile Include="FrameWork\DrawableCanvas.cs" />
+    <Compile Include="FrameWork\BasicInput.cs" />
+    <Compile Include="FrameWork\AutoDrawnButton.cs" />
+    <Compile Include="FrameWork\Color.cs" />
+    <Compile Include="FrameWork\AutoDrawnBase.cs" />
+    <Compile Include="FrameWork\DrawableObject.cs" />
+    <Compile Include="FrameWork\DxDLL.cs" />
+    <Compile Include="FrameWork\AutoDrawnCanvas.cs" />
     <Compile Include="GameScene.cs" />
-    <Compile Include="Graphic.cs" />
+    <Compile Include="FrameWork\Graphic.cs" />
+    <Compile Include="MovingObject\IMoveableBase.cs" />
     <Compile Include="main.cs" />
     <Compile Include="MenuScene.cs" />
-    <Compile Include="Scene.cs" />
-    <Compile Include="test.cs" />
-    <Compile Include="Vector2.cs" />
+    <Compile Include="FrameWork\Scene.cs" />
+    <Compile Include="MovingObject\Space2D.cs" />
+    <Compile Include="FrameWork\test.cs" />
+    <Compile Include="FrameWork\Vector2.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
