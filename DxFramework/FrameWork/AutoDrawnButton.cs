@@ -33,75 +33,82 @@ namespace DxFramework
 
         public Vector2 TextPosition { get; set; }
 
-        public DrawableCanvas MousOnCanvas { get; set; } // マウスオーバー時描画対象
-
-        public DrawableCanvas ClikedCanvas { get; set; } // クリック時描画対象
-
-        public DrawableCanvas BunedCanvas { get; set; } // 失効時描画対象
-
-
-        public override Vector2 Top // 左上の座標
+        public new MultiCanvas Canvas
         {
-            get { return _canvas.Top; }
-            set
-            {
-                _canvas.Top = value;
-                MousOnCanvas.Top = value;
-                ClikedCanvas.Top = value;
-                BunedCanvas.Top = value;
-            }
+            get { return base.Canvas as MultiCanvas; }
+            set { base.Canvas = value; }
         }
 
-        public override Vector2 Size // 左上を基準にしたサイズ
+        public ICanvasBase DefaltCanvas // 通常時描画対象
         {
-            get { return _canvas.Size; }
-            set
-            {
-                _canvas.Size = value;
-                MousOnCanvas.Size = value;
-                ClikedCanvas.Size = value;
-                BunedCanvas.Size = value;
-            }
+            get { return Canvas[0]; }
+            set { Canvas[0] = value;}
         }
 
+        public ICanvasBase MousOnCanvas // マウスオーバー時描画対象
+        {
+            get { return Canvas[1]; }
+            set { Canvas[1] = value; }
+        }
 
+        public ICanvasBase ClikedCanvas // クリック時描画対象
+        {
+            get { return Canvas[2]; }
+            set { Canvas[2] = value; }
+        }
+
+        public ICanvasBase BunedCanvas // 失効時描画対象
+        {
+            get { return Canvas[3]; }
+            set { Canvas[3] = value; }
+
+        } 
 
         public void init()
         {
+            Canvas = new MultiCanvas(new Canvas(Top, Size),new Canvas(Top, Size),new Canvas(Top, Size), new Canvas(Top, Size));
+
             Text = "";
-            TextColor = new Color(0,0,0);
+            TextColor = new Color(0, 0, 0);
             TextPosition = new Vector2(0, 0);
-            MousOnCanvas = new DrawableCanvas(Top,Size);
-            MousOnCanvas.BackGroundColor += new Color(50, 50, 50);
-            ClikedCanvas = new DrawableCanvas(Top, Size);
-            ClikedCanvas.BackGroundColor += new Color(100, 100, 100);
-            BunedCanvas = new DrawableCanvas(Top, Size);
-            BunedCanvas.BackGroundColor += new Color(50, 50, 50);
+            BunedFlag = false;
+
+            foreach (var itr in Canvas)
+            {
+                ((Canvas) itr).BackGroundColor = new Color(0, 0, 0);
+                ((Canvas)itr).OutLineColor = new Color(200, 200, 200);
+            }
+           
+            ((Canvas)MousOnCanvas).BackGroundColor += new Color(50, 50, 50);
+         
+            ((Canvas)ClikedCanvas).BackGroundColor += new Color(100, 100, 100);
+          
+            ((Canvas)BunedCanvas).BackGroundColor += new Color(50, 50, 50);
         }
 
         public override void draw()
         {
             if (BunedFlag)
             {
-                BunedCanvas.draw();
+                Canvas.drawOnly(4);
             }
             else if (isPressed())
             {
-                ClikedCanvas.draw();
+                Canvas.drawOnly(3);
             }
             else if (isMouseOn())
             {
-                MousOnCanvas.draw();
+                Canvas.drawOnly(2);
             }
             else
             {
-                base.draw();
+                Canvas.drawOnly(1);
             }
-            DX.DrawStringF((float) (Top.x + TextPosition.x), (float) (Top.y + TextPosition.y), Text, TextColor.DxCoolor);
+            base.draw();
+            DX.DrawStringF((float)(Top.x + TextPosition.x), (float)(Top.y + TextPosition.y), Text, TextColor.DxCoolor);
         }
 
         public bool BunedFlag { get; set; }
     }
 }
 
-  

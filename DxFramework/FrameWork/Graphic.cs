@@ -3,7 +3,7 @@ using DxLibDLL;
 
 namespace DxFramework.FrameWork
 {
-    class Graphic : DrawableCanvas
+    class Graphic : Canvas
     {
         protected int GraphHandle { get; private set; }
 
@@ -15,21 +15,27 @@ namespace DxFramework.FrameWork
 
         public new Vector2 Mid { get { return Top + Size / 2; } set { Top = value - Size / 2; } }  // 中心の座標
 
+        public override Action DrawAction {
+            get
+            {
+               return () =>
+               {
+                   DX.DrawGraphF((float) Top.x, (float) Top.y, GraphHandle, 1);
+               };
+            }
+        }
 
         public Graphic()
         {
             Top = new Vector2(0, 0);
+          
         }
 
         public Graphic(Vector2 top, string graphName)
         {
             setGraph(graphName);
             Top = top;
-        }
-
-        public new void draw()
-        {
-            DX.DrawGraphF((float)Top.x, (float)Top.y, GraphHandle, 1);
+          
         }
 
         // グラフィックハンドルを設定します。

@@ -4,43 +4,52 @@ namespace DxFramework.FrameWork
 
     internal delegate void NomalEventHandler(object sender, object eventArgs);
 
-    class AutoDrawnCanvas : AutoDrawnBase
+    class AutoDrawnCanvas : AutoDrawnBase,IMouseObjectBase
     {
         public AutoDrawnCanvas(int layer)
-            : this(layer,new Vector2(0,0),new Vector2(100,50) )
-        {}
+            : this(layer, new Vector2(0, 0), new Vector2(100, 50))
+        { }
 
-        public AutoDrawnCanvas(int layer, DrawableCanvas square)
+        public AutoDrawnCanvas(int layer, ICanvasBase canvas)
             : base(layer)
         {
-            _canvas = square;
+            Canvas = canvas;
+            Top = Canvas.Top;
+            Size = Canvas.Size;
             DraggableFlag = false;    　　　　　　　　　　// デフォルトではドラッグできません。
         }
 
         public AutoDrawnCanvas(int layer, Vector2 top, Vector2 size)
             : base(layer)
         {
-            _canvas = new DrawableCanvas(top, size);
+            Canvas= new Canvas(top,size);
+            Top = top;
+            Size = size;
             DraggableFlag = false;                        // デフォルトではドラッグできません。
         }
 
 
-        public DrawableCanvas Canvas                      // 描画対象
+        public ICanvasBase Canvas { get; set; }            // 描画対象
+       
+
+        public Vector2 Top                                 // 左上の座標
         {
-            get { return _canvas; }
-            set { _canvas = value; }
-        }
-  
-        virtual public Vector2 Top                         // 左上の座標
-        {
-            get {return _canvas.Top; }
-            set { _canvas.Top = value; }
+            get { return _top; }
+            set
+            {
+                Canvas.Top += value - _top;
+                _top = value;
+            }
         }
 
-       virtual  public Vector2 Size                        // 左上を基準にしたサイズ
+        public Vector2 Size                               // 左上を基準にしたサイズ
         {
-            get { return _canvas.Size; }
-            set { _canvas.Size = value; }
+            get { return _size; }
+            set
+            {
+                Canvas.Size = new Vector2(value.x / _size.x, value.y / _size.y);
+                _size = value;
+            }
         }
 
         public Vector2 Bottom                              // 右下の座標
@@ -50,10 +59,10 @@ namespace DxFramework.FrameWork
         }
 
         public Vector2 Mid                                 // 中心の座標
-        { 
-            get { return Top + Size / 2; } 
-            set { Top = value - Size / 2; } 
-        } 
+        {
+            get { return Top + Size / 2; }
+            set { Top = value - Size / 2; }
+        }
 
         public bool DraggableFlag { get; set; }　　　　　 // ドラッグ機能
 
@@ -70,12 +79,13 @@ namespace DxFramework.FrameWork
         public event NomalEventHandler DraggingEvent;     //ドラッグされている間に発生します。
 
         private bool _clickedFlag = false;
-        private bool _draggedFlag;
-       protected DrawableCanvas _canvas;
+        private bool _draggedFlag = false;
+        private Vector2 _top;
+        private Vector2 _size;
 
         public override void draw()
         {
-         _canvas.draw();
+            Canvas.DrawAction();
         }
 
         public override void update()

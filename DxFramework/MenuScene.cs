@@ -13,9 +13,15 @@ namespace DxFramework
 		public MenuScene() : base() { instance=this;}
 		public override void subInit()
 		{
-		  
-            var Hana =new AutoDrawnButton(1);
-		    Hana.DraggableFlag = true;
+
+            var Hana = new AutoDrawnButton(1);
+            Hana.DraggableFlag = true;
+            Hana.ClickedEvent += (sender, e) =>
+            {
+                Hana.MousOnCanvas = new Graphic(Hana.Top, "resource/img/angel.png");
+            };
+
+
 		    //Hana.Canvas("resource/img/angel.png");
 		    //Hana.Top = new Vector2(300, 150);
 		    //Hana.setTLight(200);
