@@ -1,5 +1,8 @@
-﻿namespace DxFramework.FrameWork
+﻿namespace DxFramework.FrameWork.Bases
 {
+
+    internal delegate void NomalEventHandler(object sender, object eventArgs);
+
     interface IMouseObjectBase
     {
         bool DraggableFlag { get; set; }　　　　　 // ドラッグ機能

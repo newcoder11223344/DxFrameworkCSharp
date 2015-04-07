@@ -1,35 +1,26 @@
 ﻿using System;
+using DxFramework.FrameWork.Bases;
+using DxFramework.FrameWork.Utils;
 using DxLibDLL;
 
 namespace DxFramework.FrameWork
 {
-    interface ICanvasBase : IDrawableBase
-    {
-        Vector2 Top { get; set; }　　　　　　　　　// 左上の座標
-
-        Vector2 Size { get; set; }　　　　　　　　 // 左上を基準にしたサイズ
-
-        Vector2 Bottom { get; set; }              // 右下の座標
-
-        Vector2 Mid { get; set; }                 // 中心の座標
-    }
-
-
     class Canvas : ICanvasBase
     {
         public Canvas()
             : this(new Vector2(0, 0), new Vector2(100, 50))
         {
-
+            IsVisible = true;
         }
 
         public Canvas(Vector2 top, Vector2 size)
         {
+            IsVisible = true;
             Top = top;
             Size = size;
             BackGroundColor = new Color(0, 0, 0);　　　　　　// デフォルトカラーが設定されています。
             OutLineColor = new Color(255, 255, 255);
-            DrawAction = () =>                            // デフォルトでは長方形を描画します。
+            DrawAction = () =>                            // デフォルトは長方形を描画します。
             {
                 DX.DrawBox((int)Top.x, (int)Top.y, (int)Bottom.x, (int)Bottom.y, BackGroundColor.DxCoolor, DX.TRUE);
                 DX.DrawBox((int)Top.x, (int)Top.y, (int)Bottom.x, (int)Bottom.y, OutLineColor.DxCoolor, DX.FALSE);

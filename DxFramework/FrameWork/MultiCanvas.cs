@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DxFramework.FrameWork.Bases;
+using DxFramework.FrameWork.Utils;
 
 namespace DxFramework.FrameWork
 {
@@ -10,6 +12,7 @@ namespace DxFramework.FrameWork
     {
         public MultiCanvas(params ICanvasBase[] c)
         {
+            IsVisible = true;
             foreach (var itr in c)
             {
                 Add(itr);

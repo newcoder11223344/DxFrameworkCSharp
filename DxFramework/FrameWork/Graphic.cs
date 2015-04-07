@@ -1,34 +1,14 @@
 ﻿using System;
+using DxFramework.FrameWork.Utils;
 using DxLibDLL;
 
 namespace DxFramework.FrameWork
 {
     class Graphic : Canvas
     {
-        protected int GraphHandle { get; private set; }
-
-        public new Vector2 Top { get; set; }　　　　　　　　　// 左上の座標
-
-        public new Vector2 Size { get; set; }　　　　　　　　 // 左上を基準にしたサイズ
-
-        public new Vector2 Bottom { get { return Top + Size; } set { Top = value - Size; } }       // 右下の座標
-
-        public new Vector2 Mid { get { return Top + Size / 2; } set { Top = value - Size / 2; } }  // 中心の座標
-
-        public override Action DrawAction {
-            get
-            {
-               return () =>
-               {
-                   DX.DrawGraphF((float) Top.x, (float) Top.y, GraphHandle, 1);
-               };
-            }
-        }
-
         public Graphic()
         {
-            Top = new Vector2(0, 0);
-          
+            Top = new Vector2(0, 0);        
         }
 
         public Graphic(Vector2 top, string graphName)
@@ -36,6 +16,26 @@ namespace DxFramework.FrameWork
             setGraph(graphName);
             Top = top;
           
+        }
+
+        public Graphic(Vector2 top, int handle)
+        {
+            IsVisible = true;
+            setGraph(handle);
+            Top = top;
+
+        }
+        public int GraphHandle { get; private set; }
+
+        public override Action DrawAction
+        {
+            get
+            {
+                return () =>
+                {
+                    DX.DrawGraphF((float)Top.x, (float)Top.y, GraphHandle, 1);
+                };
+            }
         }
 
         // グラフィックハンドルを設定します。

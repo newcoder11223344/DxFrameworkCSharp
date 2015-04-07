@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DxLibDLL;
+﻿using DxLibDLL;
 
-namespace DxFramework.FrameWork
+namespace DxFramework.FrameWork.Utils
 {
     struct Color
     {

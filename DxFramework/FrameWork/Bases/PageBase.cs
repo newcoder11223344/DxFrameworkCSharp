@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace DxFramework.FrameWork
+namespace DxFramework.FrameWork.Bases
 {
-    abstract class Scene
+    abstract class PageBase
     {
         SortedDictionary<int, List<AutoDrawnBase>> DrawableList;
-        public Scene()
+
+        protected PageBase()
         {
             DrawableList = new SortedDictionary<int, List<AutoDrawnBase>>();
             init();
@@ -39,6 +40,7 @@ namespace DxFramework.FrameWork
         {
             AutoDrawnBase.SetAutoAddFunc(addChild);
         }
+
         public virtual void draw()
         {
             foreach (KeyValuePair<int, List<AutoDrawnBase>> l in DrawableList.ToArray())
@@ -57,11 +59,3 @@ namespace DxFramework.FrameWork
 
     }
 }
-//TODO
-/*afterdrawいらない
- *ボタンのデフォルトバージョンみたいなのは、staticでmakeDefaultButtonみたいな感じで作る
- *init,update,startscene(未実装),draw
- *上記のうち、draw以外はちゃんとbaseを呼ぶ（setautoaddlist関係)
- *もしくは、setautoaddlistはスタック状にする？
- *そして明示的に読んだ方がいい？
- * */

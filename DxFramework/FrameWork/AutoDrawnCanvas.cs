@@ -1,13 +1,13 @@
-﻿using DxLibDLL;
+﻿using DxFramework.FrameWork.Bases;
+using DxFramework.FrameWork.Utils;
+using DxLibDLL;
 namespace DxFramework.FrameWork
 {
-
-    internal delegate void NomalEventHandler(object sender, object eventArgs);
 
     class AutoDrawnCanvas : AutoDrawnBase,IMouseObjectBase
     {
         public AutoDrawnCanvas(int layer)
-            : this(layer, new Vector2(0, 0), new Vector2(100, 50))
+            : this(layer, new Vector2(1, 1), new Vector2(100, 50))
         { }
 
         public AutoDrawnCanvas(int layer, ICanvasBase canvas)
@@ -47,7 +47,7 @@ namespace DxFramework.FrameWork
             get { return _size; }
             set
             {
-                Canvas.Size = new Vector2(value.x / _size.x, value.y / _size.y);
+                Canvas.Size = new Vector2(Canvas.Size.x * value.x / _size.x, Canvas.Size.y * value.y / _size.y);
                 _size = value;
             }
         }
@@ -80,8 +80,8 @@ namespace DxFramework.FrameWork
 
         private bool _clickedFlag = false;
         private bool _draggedFlag = false;
-        private Vector2 _top;
-        private Vector2 _size;
+        private Vector2 _top = new Vector2(0, 0);
+        private Vector2 _size = new Vector2(1, 1);
 
         public override void draw()
         {
@@ -116,14 +116,14 @@ namespace DxFramework.FrameWork
             {
                 _clickedFlag = false;
             }
-            if (BasicInput.mouse.left.pressed == false)
+            if (BasicInput.Mouse.Left.Pressed == false)
             {
                 _draggedFlag = false;
             }
             if (DraggableFlag && _draggedFlag)
             {
                 if (DraggingEvent != null) DraggingEvent(this, null);
-                Top += BasicInput.mouse.speed;
+                Top += BasicInput.Mouse.Speed;
             }
         }
 
@@ -134,23 +134,23 @@ namespace DxFramework.FrameWork
         }
         public bool isMouseOn()
         {
-            return Vector2.RectPointHit(Top, Bottom, BasicInput.mouse.position);
+            return Vector2.RectPointHit(Top, Bottom, BasicInput.Mouse.Position);
         }
         public bool isLastDown()　　　　// ドラッグと化すると使えなくなる　よくない
         {
-            return Vector2.RectPointHit(Top, Bottom, BasicInput.mouse.left.lastDown);
+            return Vector2.RectPointHit(Top, Bottom, BasicInput.Mouse.Left.LastDown);
         }
         public bool isClickedOn()　　　// 上で押した瞬間である。
         {
-            return Vector2.RectPointHit(Top, Bottom, BasicInput.mouse.left.lastDown) && (BasicInput.mouse.left.down);
+            return Vector2.RectPointHit(Top, Bottom, BasicInput.Mouse.Left.LastDown) && (BasicInput.Mouse.Left.Down);
         }
         public bool isClickedOff()　　　// 上で離された瞬間である。
         {
-            return Vector2.RectPointHit(Top, Bottom, BasicInput.mouse.left.lastUp) && (BasicInput.mouse.left.up);
+            return Vector2.RectPointHit(Top, Bottom, BasicInput.Mouse.Left.LastUp) && (BasicInput.Mouse.Left.Up);
         }
         public bool isPressed()　　　　// 上で押されている。
         {
-            return Vector2.RectPointHit(Top, Bottom, BasicInput.mouse.position) && (BasicInput.mouse.left.pressed);
+            return Vector2.RectPointHit(Top, Bottom, BasicInput.Mouse.Position) && (BasicInput.Mouse.Left.Pressed);
         }
 
 

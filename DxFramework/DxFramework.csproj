@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{83D6DF28-01CA-4CC6-AE98-5BB5F319C19C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DxFramework</RootNamespace>
     <AssemblyName>DxFramework</AssemblyName>
@@ -38,29 +38,31 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrameWork\Bases\ICanvasBase.cs" />
     <Compile Include="FrameWork\Canvas.cs" />
-    <Compile Include="FrameWork\BasicInput.cs" />
+    <Compile Include="FrameWork\Utils\BasicInput.cs" />
     <Compile Include="FrameWork\AutoDrawnButton.cs" />
-    <Compile Include="FrameWork\Color.cs" />
-    <Compile Include="FrameWork\AutoDrawnBase.cs" />
-    <Compile Include="FrameWork\IDrawableBase.cs" />
-    <Compile Include="FrameWork\DxDLL.cs" />
+    <Compile Include="FrameWork\Utils\Color.cs" />
+    <Compile Include="FrameWork\Bases\AutoDrawnBase.cs" />
+    <Compile Include="FrameWork\Bases\IDrawableBase.cs" />
+    <Compile Include="DxDLL.cs" />
     <Compile Include="FrameWork\AutoDrawnCanvas.cs" />
     <Compile Include="FrameWork\MultiCanvas.cs" />
-    <Compile Include="GameScene.cs" />
+    <Compile Include="FrameWork\Utils\PageManager.cs" />
+    <Compile Include="FrameWork\Text.cs" />
+    <Compile Include="Page_2.cs" />
     <Compile Include="FrameWork\Graphic.cs" />
-    <Compile Include="FrameWork\IMouseObjectBase.cs" />
-    <Compile Include="MovingObject\IMoveableBase.cs" />
-    <Compile Include="main.cs" />
-    <Compile Include="MenuScene.cs" />
-    <Compile Include="FrameWork\Scene.cs" />
-    <Compile Include="MovingObject\Space2D.cs" />
-    <Compile Include="FrameWork\test.cs" />
-    <Compile Include="FrameWork\Vector2.cs" />
+    <Compile Include="FrameWork\Bases\IMouseObjectBase.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Page_1.cs" />
+    <Compile Include="FrameWork\Bases\PageBase.cs" />
+    <Compile Include="test.cs" />
+    <Compile Include="FrameWork\Utils\Vector2.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

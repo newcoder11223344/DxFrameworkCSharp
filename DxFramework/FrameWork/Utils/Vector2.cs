@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DxFramework.FrameWork
+namespace DxFramework.FrameWork.Utils
 {
 	public struct Vector2//沢山作って捨てるタイプと思われるので、構造体にした
 				　//参照型ではなく、値型になる

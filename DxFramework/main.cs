@@ -1,5 +1,6 @@
 ﻿using System;
 using DxFramework.FrameWork;
+using DxFramework.FrameWork.Utils;
 using DxLibDLL;
 
 namespace DxFramework
@@ -14,16 +15,15 @@ namespace DxFramework
 			//DX.SetGraphMode(800, 600, 32);
 			if (DX.DxLib_Init() == -1) return;
 			DX.SetDrawScreen(DX.DX_SCREEN_BACK);
+		    PageManager.ActivePage = new Page_1();
 			//++++++++++++++++++++++++++initialized dxlib++++++++++++++++++++++++++++
-			var menuscene = new MenuScene();
-		    var gamescene = new GameScene();
-			Scene scene=menuscene;
+			
 			while (DX.ScreenFlip() == 0 && DX.ProcessMessage() == 0 && DX.ClearDrawScreen() == 0)
 			{
 				//-----------------------------mainloop---------------------------
 				BasicInput.update();
-                scene.update();
-			    scene.draw();
+                PageManager.ActivePage.update();
+                PageManager.ActivePage.draw();           
 			    //+++++++++++++++++++++++++++++++mainloop+++++++++++++++++++++++++
 			}
 			DX.DxLib_End();
