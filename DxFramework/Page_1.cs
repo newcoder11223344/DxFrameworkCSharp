@@ -14,22 +14,20 @@ namespace DxFramework
 		public Page_1() : base() {}
 		public override void subInit()
 		{
-		    var back = new AutoDrawnCanvas(1, new Graphic(new Vector2(0, 0), "resource/img/back.png"));
+		    var back = new AutoDrawnCanvas(1, new Vector2(0,0), new Graphic("resource/img/back.png"));
 
 
-		    var title = new AutoDrawnCanvas(1,new Text("DxFramework3.0",52,"メイリオ",2));
-            title.Top=new Vector2(100,50);
-
-            var button1 = new AutoDrawnButton(1,new Vector2(180,200));
+		    var title = new AutoDrawnText(2,new Vector2(100,50), new Text("DxFramework3.0",52,"メイリオ",2));
+         
+            var button1 = new AutoDrawnButton(2,new Vector2(180,200));
             button1.DraggableFlag = true;
             button1.setColor(new Color(200,50,50));
             button1.Text.Color=new Color(255,255,255);
 
-            var button2 = new AutoDrawnButton(1,new Vector2(300,200), () =>
+            var button2 = new AutoDrawnButton(2,new Vector2(300,200), () =>
             {
                 PageManager.changPage(typeof(Page_2));
             },"次のページ");
-       
 
 		}
 		public override void subUpdate()

@@ -19,18 +19,6 @@ namespace DxFramework.FrameWork
             }
         }
 
-        public Vector2 Top                            
-        {                           
-            get { return this[_activeCanvas].Top; }
-            set
-            {
-                var del = value - this[_activeCanvas].Top;
-                foreach (var itr in this)
-                {
-                    itr.Top += del;
-                }
-            }
-        }　　　　　　　　　
 
         public Vector2 Size {
             get { return this[_activeCanvas].Size; }
@@ -45,24 +33,20 @@ namespace DxFramework.FrameWork
             }
         }　　　　　　　　
 
-        public Vector2 Bottom { get { return Top + Size; } set { Top = value - Size; } }       // 右下の座標
-
-        public Vector2 Mid { get { return Top + Size / 2; } set { Top = value - Size / 2; } }  // 中心の座標
-
         public bool IsVisible { get; set; }
 
         private int _activeCanvas = 0;
 
-        public Action DrawAction
+        public Action<Vector2> DrawAction
         {
             get
             {
-                return () =>
+                return (top) =>
                 {
                     foreach (var itr in this)
                     {
                         if (itr.IsVisible)
-                            itr.DrawAction();
+                            itr.DrawAction(top);
                     }
                 };
             }

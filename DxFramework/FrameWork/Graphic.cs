@@ -7,33 +7,29 @@ namespace DxFramework.FrameWork
     class Graphic : Canvas
     {
         public Graphic()
-        {
-            Top = new Vector2(0, 0);        
+        {  
         }
 
-        public Graphic(Vector2 top, string graphName)
+        public Graphic(string graphName)
         {
             setGraph(graphName);
-            Top = top;
-          
         }
 
-        public Graphic(Vector2 top, int handle)
+        public Graphic(int handle)
         {
             IsVisible = true;
             setGraph(handle);
-            Top = top;
 
         }
         public int GraphHandle { get; private set; }
 
-        public override Action DrawAction
+        public override Action<Vector2> DrawAction
         {
             get
             {
-                return () =>
+                return (top) =>
                 {
-                    DX.DrawGraphF((float)Top.x, (float)Top.y, GraphHandle, 1);
+                    DX.DrawGraphF((float)top.x, (float)top.y, GraphHandle, 1);
                 };
             }
         }

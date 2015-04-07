@@ -22,6 +22,7 @@ namespace DxFramework.FrameWork.Utils
 
         public static void changPage(Type pageName)
         {
+            AutoDrawnBase.EndAutoAddFunc();
             foreach (var itr in PageList)
             {
                 if (itr.GetType() == pageName)

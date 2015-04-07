@@ -38,6 +38,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrameWork\AutoDrawnText.cs" />
     <Compile Include="FrameWork\Bases\ICanvasBase.cs" />
     <Compile Include="FrameWork\Canvas.cs" />
     <Compile Include="FrameWork\Utils\BasicInput.cs" />

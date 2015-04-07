@@ -6,7 +6,7 @@ using DxLibDLL;
 
 namespace DxFramework.FrameWork
 {
-    internal class AutoDrawnButton : AutoDrawnCanvas
+    internal class AutoDrawnButton : AutoDrawnText
     {
         public AutoDrawnButton(int layer)
             : base(layer)
@@ -40,64 +40,49 @@ namespace DxFramework.FrameWork
                 clicked();
             };
         }
-        public new MultiCanvas Canvas
+
+        public void init()
+        {
+            BackGroundFlag = true;
+            Size = new Vector2(100, 50);
+            Canvas = new MultiCanvas(new Canvas(Size), new Canvas(Size), new Canvas(Size), new Canvas(Size));
+            BunedFlag = false;
+            changeColor(new Color(200, 200, 200), new Color(0, 0, 0));
+            setTextPosition(TextPos.Mid);
+        }
+
+        public MultiCanvas Canvas
         {
             get { return base.Canvas as MultiCanvas; }
             set { base.Canvas = value; }
         }
 
-        public MultiCanvas ButtonCanvas { get; set; }
-
         public bool BunedFlag { get; set; } //有効かどうか
-
-        public Text Text
-        {
-            get { return (Text)Canvas[1]; }
-            set { Canvas[1] = value; }
-        }
 
         public ICanvasBase DefaltCanvas 　// 通常時描画対象
         {
-            get { return ButtonCanvas[0]; }
-            set { ButtonCanvas[0] = value; }
+            get { return Canvas[0]; }
+            set { Canvas[0] = value; }
         }
 
         public ICanvasBase MousOnCanvas // マウスオーバー時描画対象
         {
-            get { return ButtonCanvas[1]; }
-            set { ButtonCanvas[1] = value; }
+            get { return Canvas[1]; }
+            set { Canvas[1] = value; }
         }
 
         public ICanvasBase ClickedCanvas // クリック時描画対象
         {
-            get { return ButtonCanvas[2]; }
-            set { ButtonCanvas[2] = value; }
+            get { return Canvas[2]; }
+            set { Canvas[2] = value; }
         }
 
         public ICanvasBase BunedCanvas // 失効時描画対象
         {
-            get { return ButtonCanvas[3]; }
-            set { ButtonCanvas[3] = value; }
-
+            get { return Canvas[3]; }
+            set { Canvas[3] = value; }
         }
 
-
-
-        public void init()
-        {
-            ButtonCanvas = new MultiCanvas(new Canvas(Top, Size), new Canvas(Top, Size), new Canvas(Top, Size), new Canvas(Top, Size));
-            Canvas = new MultiCanvas(ButtonCanvas, new Text("新しいボタン"));
-
-            Text.Top = Top;
-            Text.Size = Size;
-            Text.Color = new Color(0, 0, 0);
-            Text.setTextPosition(Text.TextPos.Mid);
-
-            BunedFlag = false;
-
-            changeColor(new Color(200, 200, 200), new Color(0, 0, 0));
-
-        }
 
         public void setGraph(Graphic canvas)
         {
@@ -108,16 +93,15 @@ namespace DxFramework.FrameWork
             DX.GraphFilterBlt(canvas.GraphHandle, handle2, DX.DX_GRAPH_FILTER_HSB, 0, 0, 0, 100);
             DX.GraphFilterBlt(canvas.GraphHandle, handle3, DX.DX_GRAPH_FILTER_HSB, 0, 0, 0, 100);
             DefaltCanvas = canvas;
-            MousOnCanvas = new Graphic(Top, handle1);
-            ClickedCanvas = new Graphic(Top, handle2);
-            BunedCanvas = new Graphic(Top, handle3);
+            MousOnCanvas = new Graphic(handle1);
+            ClickedCanvas = new Graphic(handle2);
+            BunedCanvas = new Graphic(handle3);
             Size = canvas.Size;
-            Top = canvas.Top;
         }
 
         public void changeColor(Color backgroundColor,Color outlineColor)
         {
-            foreach (var itr in ButtonCanvas.OfType<Canvas>())
+            foreach (var itr in Canvas.OfType<Canvas>())
             {
                 (itr).BackGroundColor = backgroundColor;
                 (itr).OutLineColor = outlineColor;
@@ -134,32 +118,32 @@ namespace DxFramework.FrameWork
 
         public void setGraph(int handle)
         {
-            setGraph(new Graphic(Top, handle));
+            setGraph(new Graphic(handle));
         }
 
         public void setGraph(string graphName)
         {
-            setGraph(new Graphic(Top, graphName));
+            setGraph(new Graphic(graphName));
         }
 
         public override void update()
         {
             if (BunedFlag)
             {
-                ButtonCanvas.drawOnly(4);
+                Canvas.drawOnly(4);
                 return;
             }
             else if (isPressed())
             {
-                ButtonCanvas.drawOnly(3);
+                Canvas.drawOnly(3);
             }
             else if (isMouseOn())
             {
-                ButtonCanvas.drawOnly(2);
+                Canvas.drawOnly(2);
             }
             else
             {
-                ButtonCanvas.drawOnly(1);
+                Canvas.drawOnly(1);
             }
             base.update();
         }

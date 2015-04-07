@@ -1,10 +1,11 @@
 ﻿using System;
+using DxFramework.FrameWork.Utils;
 
 namespace DxFramework.FrameWork.Bases
 {
     interface IDrawableBase
     {
-        Action DrawAction { get; }
+        Action<Vector2> DrawAction { get; }
 
         bool IsVisible { get; set; }
     }

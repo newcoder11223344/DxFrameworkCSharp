@@ -15,10 +15,6 @@ namespace DxFramework.FrameWork
         private int _thick;
         private string _fontName;
         private int _fontHandle;
-        private TextPos _textPos;
-        private Vector2 _top;
-        private Vector2 _size;
-        private string _string;
 
         public Text()
         {
@@ -28,56 +24,42 @@ namespace DxFramework.FrameWork
         {
             IsVisible = true;
             String = str;
-            setTextPosition(TextPos.Top);
             setFont("ＭＳ ゴシック", 12, 1);
-            _top = new Vector2(0, 0);
-            _size = new Vector2(getTextWidth(), FontSize);
         }
         public Text(string str,int size)
         {
             IsVisible = true;
             String = str;
-            setTextPosition(TextPos.Top);
             setFont("ＭＳ ゴシック", size, 1);
-            _top = new Vector2(0, 0);
-            _size = new Vector2(getTextWidth(), FontSize);
         }
         public Text(string str,int size,string fontName)
         {
             IsVisible = true;
             String = str;
-            setTextPosition(TextPos.Top);
             setFont(fontName, size, 1);
-            _top = new Vector2(0, 0);
-            _size = new Vector2(getTextWidth(), FontSize);
         }
         public Text(string str, int size, string fontName,int thick)
         {
             IsVisible = true;
             String = str;
-            setTextPosition(TextPos.Top);
             setFont(fontName, size, thick);
-            _top = new Vector2(0, 0);
-            _size = new Vector2(getTextWidth(), FontSize);
+           
         }
 
         public void init()
         {
             String = "Hello! World";
-            setTextPosition(TextPos.Top);
             setFont("ＭＳ ゴシック",12,1);
-            _top = new Vector2(0, 0);
-            _size = new Vector2(getTextWidth(), FontSize);
+          
         }
 
-        public string String {
-            get { return _string; }
-            set
-            {
-                _string = value;
-                setTextPosition(_textPos);
-            }
+        public Vector2 Size
+        {
+            get { return new Vector2(getTextWidth(), _fontSize); }
+            set {  }
         }
+
+        public string String { get; set; }
 
         public Color Color { get; set; }
 
@@ -111,40 +93,14 @@ namespace DxFramework.FrameWork
             }
         }
 
-        public Vector2 TextPosition { get; set; }
-
-
-        public Vector2 Top
-        {
-            get { return _top; }
-            set
-            {
-                _top = value;
-                setTextPosition(_textPos);
-            }
-        }　　　　　　　　
-
-        public Vector2 Size
-        {
-            get { return _size; }
-            set
-            {
-                _size = value;
-                setTextPosition(_textPos);
-            }
-        }
-
-        public Vector2 Bottom { get { return Top + Size; } set { Top = value - Size; } }       // 右下の座標
-
-        public Vector2 Mid { get { return Top + Size / 2; } set { Top = value - Size / 2; } }  // 中心の座標
-
-        public Action DrawAction
+     
+        public Action<Vector2> DrawAction
         {
             get
             {
-                return () =>
+                return (top) =>
                 {
-                    DX.DrawStringToHandle((int)(Top.x+TextPosition.x), (int)(Top.y+TextPosition.y), String, Color.DxCoolor, _fontHandle);
+                    DX.DrawStringToHandle((int)top.x, (int)top.y, String, Color.DxCoolor, _fontHandle);
                 };
             }
         }
@@ -176,29 +132,5 @@ namespace DxFramework.FrameWork
         {
             _fontHandle = DX.CreateFontToHandle(FontName, FontSize, Thick, DX.DX_FONTTYPE_ANTIALIASING_8X8);
         }
-
-        public enum TextPos { Top, Mid, Bottom,Custom };
-
-        public void setTextPosition(TextPos pos)
-        {
-            _textPos = pos;
-            switch (pos)
-            {
-                case TextPos.Top:
-                    TextPosition = new Vector2(0, 0);
-                    break;
-                case TextPos.Mid:
-                    TextPosition = Mid - Top - new Vector2(getTextWidth()/2.0, FontSize/2.0);
-                    break;
-                case TextPos.Bottom:
-                    TextPosition = Bottom - new Vector2(getTextWidth()/2.0, FontSize/2.0);
-                    break;
-                case TextPos.Custom:
-                    break;
-                
-            }
-
-        }
-     
     }
 }

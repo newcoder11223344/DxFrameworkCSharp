@@ -10,11 +10,11 @@ namespace DxFramework.FrameWork
             : this(layer, new Vector2(1, 1), new Vector2(100, 50))
         { }
 
-        public AutoDrawnCanvas(int layer, ICanvasBase canvas)
+        public AutoDrawnCanvas(int layer, Vector2 top, ICanvasBase canvas)
             : base(layer)
         {
+            Top = top;
             Canvas = canvas;
-            Top = Canvas.Top;
             Size = Canvas.Size;
             DraggableFlag = false;    　　　　　　　　　　// デフォルトではドラッグできません。
         }
@@ -22,7 +22,7 @@ namespace DxFramework.FrameWork
         public AutoDrawnCanvas(int layer, Vector2 top, Vector2 size)
             : base(layer)
         {
-            Canvas= new Canvas(top,size);
+            Canvas = new Canvas();
             Top = top;
             Size = size;
             DraggableFlag = false;                        // デフォルトではドラッグできません。
@@ -30,19 +30,12 @@ namespace DxFramework.FrameWork
 
 
         public ICanvasBase Canvas { get; set; }            // 描画対象
+
+
+        public virtual Vector2 Top { get; set; }           // 左上の座標
        
 
-        public Vector2 Top                                 // 左上の座標
-        {
-            get { return _top; }
-            set
-            {
-                Canvas.Top += value - _top;
-                _top = value;
-            }
-        }
-
-        public Vector2 Size                               // 左上を基準にしたサイズ
+        public virtual Vector2 Size                        // 左上を基準にしたサイズ
         {
             get { return _size; }
             set
@@ -80,12 +73,11 @@ namespace DxFramework.FrameWork
 
         private bool _clickedFlag = false;
         private bool _draggedFlag = false;
-        private Vector2 _top = new Vector2(0, 0);
         private Vector2 _size = new Vector2(1, 1);
 
         public override void draw()
         {
-            Canvas.DrawAction();
+            Canvas.DrawAction(Top);
         }
 
         public override void update()
