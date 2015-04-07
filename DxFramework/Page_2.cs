@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DxFramework.FrameWork;
 using DxFramework.FrameWork.Bases;
+using DxFramework.FrameWork.Materials;
 using DxFramework.FrameWork.Utils;
 
 namespace DxFramework
@@ -14,8 +15,8 @@ namespace DxFramework
         public override void
        subInit()
         {
-            var back = new AutoDrawnCanvas(1, new Vector2(0, 0), new Graphic("resource/img/back.png"));
-            var GraphButton = new AutoDrawnButton(1,new Vector2(0,0), () =>
+            var back = new Canvas(1, new Vector2(0, 0), new GraphicMaterial("resource/img/back.png"));
+            var GraphButton = new Button(1,new Vector2(0,0), () =>
             {
                 PageManager.changPage(typeof(Page_1));
             },"前のページ");

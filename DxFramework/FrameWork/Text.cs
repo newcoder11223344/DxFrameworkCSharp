@@ -1,136 +1,112 @@
-﻿using System;
+﻿using DxFramework.FrameWork.Bases;
+using DxFramework.FrameWork.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DxFramework.FrameWork.Bases;
-using DxFramework.FrameWork.Utils;
-using DxLibDLL;
+using DxFramework.FrameWork.Materials;
 
 namespace DxFramework.FrameWork
 {
-    class Text : ICanvasBase
+    public enum TextPos { Top, Mid, Bottom, Custom };
+
+    class Text : Canvas
     {
-        private int _fontSize;
-        private int _thick;
-        private string _fontName;
-        private int _fontHandle;
+        private Vector2 _size;
+        private TextPos _textPos;
+        private bool _changeTextFlag = false;
+        private Vector2 _textPosition;
+        private TextMaterial _text;
 
-        public Text()
+        public Text(int layer)
+            : base(layer)
         {
-            init();
-        }
-        public Text(string str)
-        {
-            IsVisible = true;
-            String = str;
-            setFont("ＭＳ ゴシック", 12, 1);
-        }
-        public Text(string str,int size)
-        {
-            IsVisible = true;
-            String = str;
-            setFont("ＭＳ ゴシック", size, 1);
-        }
-        public Text(string str,int size,string fontName)
-        {
-            IsVisible = true;
-            String = str;
-            setFont(fontName, size, 1);
-        }
-        public Text(string str, int size, string fontName,int thick)
-        {
-            IsVisible = true;
-            String = str;
-            setFont(fontName, size, thick);
-           
+            TextMaterial = new TextMaterial();
+            Size = TextMaterial.Size;
+            BackGroundFlag = false;
         }
 
-        public void init()
+        public Text(int layer, Vector2 top, TextMaterial tex)
+            : base(layer)
         {
-            String = "Hello! World";
-            setFont("ＭＳ ゴシック",12,1);
-          
+            TextMaterial = new TextMaterial();
+            Top = top;
+            TextMaterial = tex;
+            Size = tex.Size;
+            BackGroundFlag = false;
         }
 
-        public Vector2 Size
-        {
-            get { return new Vector2(getTextWidth(), _fontSize); }
-            set {  }
-        }
+        public bool BackGroundFlag { get; set; }
 
-        public string String { get; set; }
 
-        public Color Color { get; set; }
-
-        public string FontName
-        {
-            get { return _fontName; }
-            set
-            {
-                _fontName = value;
-                setFont();
-            }
-        }
-
-        public int FontSize
-        {
-            get { return _fontSize; }
-            set
-            {
-                _fontSize = value;
-                setFont();
-            }
-        }
-
-        public int Thick 
-        {
-            get { return _thick; }
-            set
-            {
-                _thick = value;
-                setFont();
-            }
-        }
-
-     
-        public Action<Vector2> DrawAction
+        public TextMaterial TextMaterial
         {
             get
             {
-                return (top) =>
-                {
-                    DX.DrawStringToHandle((int)top.x, (int)top.y, String, Color.DxCoolor, _fontHandle);
-                };
+                _changeTextFlag = true;
+                return _text;
+            }
+            set
+            {
+                _text = value;
+                setTextPosition(_textPos);
             }
         }
 
-        public bool IsVisible { get; set; }
-
-        public int getTextWidth()
+        public Vector2 TextPosition
         {
-            return DX.GetDrawStringWidthToHandle(String, Encoding.GetEncoding("Shift_JIS").GetByteCount(String), _fontHandle);
+            get { return _textPosition; }
+            set
+            {
+                _textPosition = value;
+                _textPos = TextPos.Custom;
+            }
         }
 
-        public void setFont(string fontName, int size, int thick)
+        public override Vector2 Size
         {
-            FontSize = size;
-            Thick = thick;
-            FontName = fontName;
-            _fontHandle = DX.CreateFontToHandle(fontName, size, thick, DX.DX_FONTTYPE_ANTIALIASING_8X8);
+            get { return _size; }
+            set
+            {
+                _size = value;
+                setTextPosition(_textPos);
+            }
         }
 
-        public void setFont(int fontHandle)
+        public override void draw()
         {
-            FontSize = -1;
-            Thick = -1;
-            FontName = null;
-            _fontHandle = fontHandle;
+           if(BackGroundFlag) base.draw();
+           TextMaterial.DrawAction(Top + TextPosition);
         }
 
-        public void setFont()
+        public override void update()
         {
-            _fontHandle = DX.CreateFontToHandle(FontName, FontSize, Thick, DX.DX_FONTTYPE_ANTIALIASING_8X8);
+            if (_changeTextFlag)
+            {
+                _changeTextFlag = false;
+                setTextPosition(_textPos);
+            }
+            base.update();
+        }
+
+        public void setTextPosition(TextPos pos)
+        {
+            _textPos = pos;
+            switch (pos)
+            {
+                case TextPos.Top:
+                    _textPosition = new Vector2(0, 0);
+                    break;
+                case TextPos.Mid:
+                    _textPosition = Mid - Top - TextMaterial.Size/2.0;
+                    break;
+                case TextPos.Bottom:
+                    _textPosition = Bottom - TextMaterial.Size/2.0;
+                    break;
+                case TextPos.Custom:
+                    break;
+            }
         }
     }
 }

@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DxFramework.FrameWork.Bases;
 using DxFramework.FrameWork.Utils;
 
-namespace DxFramework.FrameWork
+namespace DxFramework.FrameWork.Materials
 {
-    class MultiCanvas : List<ICanvasBase>, ICanvasBase
+    class MultiCanvasMaterial : List<ICanvasMaterialBase>, ICanvasMaterialBase
     {
-        public MultiCanvas(params ICanvasBase[] c)
+        public MultiCanvasMaterial(params ICanvasMaterialBase[] c)
         {
             IsVisible = true;
             foreach (var itr in c)
@@ -18,7 +15,6 @@ namespace DxFramework.FrameWork
                 Add(itr);
             }
         }
-
 
         public Vector2 Size {
             get { return this[_activeCanvas].Size; }

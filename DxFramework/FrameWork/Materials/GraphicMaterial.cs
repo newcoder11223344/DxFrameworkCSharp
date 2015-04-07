@@ -2,20 +2,20 @@
 using DxFramework.FrameWork.Utils;
 using DxLibDLL;
 
-namespace DxFramework.FrameWork
+namespace DxFramework.FrameWork.Materials
 {
-    class Graphic : Canvas
+    class GraphicMaterial : CanvasMaterial
     {
-        public Graphic()
+        public GraphicMaterial()
         {  
         }
 
-        public Graphic(string graphName)
+        public GraphicMaterial(string graphName)
         {
             setGraph(graphName);
         }
 
-        public Graphic(int handle)
+        public GraphicMaterial(int handle)
         {
             IsVisible = true;
             setGraph(handle);

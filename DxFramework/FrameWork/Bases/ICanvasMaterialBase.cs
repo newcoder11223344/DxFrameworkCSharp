@@ -7,8 +7,8 @@ using DxFramework.FrameWork.Utils;
 
 namespace DxFramework.FrameWork.Bases
 {
-    interface ICanvasBase : IDrawableBase
+    interface ICanvasMaterialBase : IDrawableBase
     {
-        Vector2 Size { get; set; }　　　　　　　　 // 左上を基準にしたサイズ
+        Vector2 Size { get; set; }
     }
 }

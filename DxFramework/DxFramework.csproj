@@ -38,21 +38,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrameWork\AutoDrawnText.cs" />
-    <Compile Include="FrameWork\Bases\ICanvasBase.cs" />
-    <Compile Include="FrameWork\Canvas.cs" />
+    <Compile Include="FrameWork\Text.cs" />
+    <Compile Include="FrameWork\Bases\ICanvasMaterialBase.cs" />
+    <Compile Include="FrameWork\Materials\CanvasMaterial.cs" />
     <Compile Include="FrameWork\Utils\BasicInput.cs" />
-    <Compile Include="FrameWork\AutoDrawnButton.cs" />
+    <Compile Include="FrameWork\Button.cs" />
     <Compile Include="FrameWork\Utils\Color.cs" />
     <Compile Include="FrameWork\Bases\AutoDrawnBase.cs" />
     <Compile Include="FrameWork\Bases\IDrawableBase.cs" />
     <Compile Include="DxDLL.cs" />
-    <Compile Include="FrameWork\AutoDrawnCanvas.cs" />
-    <Compile Include="FrameWork\MultiCanvas.cs" />
+    <Compile Include="FrameWork\Canvas.cs" />
+    <Compile Include="FrameWork\Materials\MultiCanvasMaterial.cs" />
     <Compile Include="FrameWork\Utils\PageManager.cs" />
-    <Compile Include="FrameWork\Text.cs" />
+    <Compile Include="FrameWork\Materials\TextMaterial.cs" />
     <Compile Include="Page_2.cs" />
-    <Compile Include="FrameWork\Graphic.cs" />
+    <Compile Include="FrameWork\Materials\GraphicMaterial.cs" />
     <Compile Include="FrameWork\Bases\IMouseObjectBase.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Page_1.cs" />
