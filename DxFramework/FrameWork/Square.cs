@@ -26,7 +26,6 @@ namespace DxFramework.FrameWork
             Size = size;
         }
 
-
         public  ISquareMaterialBase SquareMaterial { get; set; }   // 描画対象
 
         public override IMaterialBase Material
@@ -35,14 +34,12 @@ namespace DxFramework.FrameWork
             set { SquareMaterial = value as ISquareMaterialBase; }
         }
 
-
         public virtual Vector2 Top                          // 左上の座標
         {
             get { return _drawingPoint; }
             set { _drawingPoint = value; }
         }          
        
-
         public virtual Vector2 Size                        // 左上を基準にしたサイズ
         {
             get { return _size; }
@@ -72,23 +69,27 @@ namespace DxFramework.FrameWork
             return Vector2.RectPointHit(Top, Bottom, point);
         }
        
-        public bool isLastDown()　　　　// ドラッグと化すると使えなくなる　よくない
+        public bool isLastDown()  // ドラッグと化すると使えなくなる　よくない
         {
             return Vector2.RectPointHit(Top, Bottom, BasicInput.Mouse.Left.LastDown);
         }
+
         public override bool isMouseOn()
         {
             return Vector2.RectPointHit(Top, Bottom, BasicInput.Mouse.Position);
         }
-        public override bool isClickedOn()　　　// 上で押した瞬間である。
+
+        public override bool isClickedOn()
         {
             return Vector2.RectPointHit(Top, Bottom, BasicInput.Mouse.Left.LastDown) && (BasicInput.Mouse.Left.Down);
         }
-        public override bool isClickedOff()　　　// 上で離された瞬間である。
+
+        public override bool isClickedOff()
         {
             return Vector2.RectPointHit(Top, Bottom, BasicInput.Mouse.Left.LastUp) && (BasicInput.Mouse.Left.Up);
         }
-        public override bool isPressed()　　　　// 上で押されている。
+
+        public override bool isPressed()
         {
             return Vector2.RectPointHit(Top, Bottom, BasicInput.Mouse.Position) && (BasicInput.Mouse.Left.Pressed);
         }

@@ -5,9 +5,9 @@ using DxFramework.FrameWork.Utils;
 
 namespace DxFramework.FrameWork.Materials
 {
-    class MultiCanvasMaterial : List<ISquareMaterialBase>, ISquareMaterialBase
+    class MultiSquareMaterial : List<ISquareMaterialBase>, ISquareMaterialBase
     {
-        public MultiCanvasMaterial(params ISquareMaterialBase[] c)
+        public MultiSquareMaterial(params ISquareMaterialBase[] c)
         {
             IsVisible = true;
             foreach (var itr in c)
@@ -16,7 +16,8 @@ namespace DxFramework.FrameWork.Materials
             }
         }
 
-        public Vector2 Size {
+        public Vector2 Size
+        {
             get { return this[_activeCanvas].Size; }
             set
             {
@@ -24,7 +25,7 @@ namespace DxFramework.FrameWork.Materials
                 var dely = value.y / this[_activeCanvas].Size.y;
                 foreach (var itr in this)
                 {
-                    itr.Size = new Vector2(itr.Size.x*delx, itr.Size.y*dely);
+                    itr.Size = new Vector2(itr.Size.x * delx, itr.Size.y * dely);
                 }
             }
         }　　　　　　　　
@@ -57,7 +58,7 @@ namespace DxFramework.FrameWork.Materials
             if (Count >= i)
             {
                 this[i - 1].IsVisible = true;
-                _activeCanvas = i - 1;
+                //_activeCanvas = i - 1;
             }
         }
     }

@@ -33,6 +33,7 @@ namespace DxFramework.FrameWork.Bases
         public event NomalEventHandler DraggingEvent;     //ドラッグされている間に発生します。
 
         private bool _clickedFlag;
+
         private bool _draggedFlag;
 
         public override void draw()
@@ -79,18 +80,12 @@ namespace DxFramework.FrameWork.Bases
             }
         }
 
-       public abstract bool isPressed();
+        public abstract bool isPressed();      // 上で押されている。
 
-       public abstract bool isClickedOn();
+       public abstract bool isClickedOn();   // 上で押した瞬間である。
 
-       public abstract bool isClickedOff();
+       public abstract bool isClickedOff(); 　// 上で離された瞬間である。
 
-       public abstract bool isMouseOn();
-
-
-
-
-
-
+       public abstract bool isMouseOn();     // マウスオーバーしている。
     }
 }

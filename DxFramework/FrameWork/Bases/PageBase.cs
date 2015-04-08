@@ -51,11 +51,11 @@ namespace DxFramework.FrameWork.Bases
                 }
             }
         }
+
         public void addChild(AutoDrawnBase obj)
         {
             if (DrawableList.ContainsKey(obj.Layer) == false) { DrawableList.Add(obj.Layer, new List<AutoDrawnBase>()); }
             DrawableList[obj.Layer].Add(obj);
         }
-
     }
 }

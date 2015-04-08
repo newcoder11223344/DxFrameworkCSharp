@@ -46,15 +46,15 @@ namespace DxFramework.FrameWork
         {
             BackGroundFlag = true;
             Size = new Vector2(100, 50);
-            Canvas = new MultiCanvasMaterial(new SquareMaterial(Size), new SquareMaterial(Size), new SquareMaterial(Size), new SquareMaterial(Size));
+            Canvas = new MultiSquareMaterial(new SquareMaterial(Size), new SquareMaterial(Size), new SquareMaterial(Size), new SquareMaterial(Size));
             BunedFlag = false;
             changeColor(new Color(200, 200, 200), new Color(0, 0, 0));
             setTextPosition(TextPos.Mid);
         }
 
-        public MultiCanvasMaterial Canvas
+        public MultiSquareMaterial Canvas
         {
-            get { return base.Material as MultiCanvasMaterial; }
+            get { return base.Material as MultiSquareMaterial; }
             set { base.Material = value; }
         }
 

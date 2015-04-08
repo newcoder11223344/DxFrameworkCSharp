@@ -39,7 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FrameWork\Bases\ShapeBase.cs" />
-    <Compile Include="FrameWork\Text.cs" />
+    <Compile Include="FrameWork\TextBlock.cs" />
     <Compile Include="FrameWork\Bases\ISquareMaterialBase.cs" />
     <Compile Include="FrameWork\Materials\SquareMaterial.cs" />
     <Compile Include="FrameWork\Utils\BasicInput.cs" />
@@ -49,7 +49,7 @@
     <Compile Include="FrameWork\Bases\IMaterialBase.cs" />
     <Compile Include="DxDLL.cs" />
     <Compile Include="FrameWork\Square.cs" />
-    <Compile Include="FrameWork\Materials\MultiCanvasMaterial.cs" />
+    <Compile Include="FrameWork\Materials\MultiSquareMaterial.cs" />
     <Compile Include="FrameWork\Utils\PageManager.cs" />
     <Compile Include="FrameWork\Materials\TextMaterial.cs" />
     <Compile Include="Page_2.cs" />

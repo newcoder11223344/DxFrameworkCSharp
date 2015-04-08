@@ -59,7 +59,5 @@ namespace DxFramework.FrameWork.Materials
             draw();
             DX.SetDrawScreen(DX.DX_SCREEN_BACK);
         }
-
-
     }
 }
