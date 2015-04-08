@@ -8,11 +8,6 @@ namespace DxFramework.FrameWork.Materials
 {
     class TextMaterial : ISquareMaterialBase
     {
-        private int _fontSize;
-        private int _thick;
-        private string _fontName;
-        private int _fontHandle;
-
         public TextMaterial()
         {
             init();
@@ -41,6 +36,14 @@ namespace DxFramework.FrameWork.Materials
             String = str;
             setFont(fontName, size, thick);        
         }
+
+        private int _fontSize;
+        
+        private int _thick;
+        
+        private string _fontName;
+        
+        private int _fontHandle;
 
         public void init()
         {

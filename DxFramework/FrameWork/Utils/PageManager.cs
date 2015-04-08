@@ -6,8 +6,6 @@ namespace DxFramework.FrameWork.Utils
 {
     static class PageManager
     {
-      
-
         public static List<PageBase> PageList = new List<PageBase>()
         {
             new Page_1(),new Page_2()

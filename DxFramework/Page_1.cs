@@ -12,7 +12,6 @@ namespace DxFramework
 {
     class Page_1 : PageBase
     {
-        public Page_1() : base() { }
         public override void subInit()
         {
             var back = new Square(1, new Vector2(0, 0), new GraphicMaterial("resource/img/back.png"));

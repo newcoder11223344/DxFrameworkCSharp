@@ -7,7 +7,7 @@ using DxLibDLL;
 
 namespace DxFramework.FrameWork
 {
-    internal class Button : TextBlock
+    class Button : TextBlock
     {
         public Button(int layer)
             : base(layer)
