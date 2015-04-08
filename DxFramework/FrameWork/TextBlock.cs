@@ -11,15 +11,9 @@ namespace DxFramework.FrameWork
 {
     public enum TextPos { Top, Mid, Bottom, Custom };
 
-    class Text : Canvas
+    class TextBlock : Square
     {
-        private Vector2 _size;
-        private TextPos _textPos;
-        private bool _changeTextFlag = false;
-        private Vector2 _textPosition;
-        private TextMaterial _text;
-
-        public Text(int layer)
+        public TextBlock(int layer)
             : base(layer)
         {
             TextMaterial = new TextMaterial();
@@ -27,7 +21,7 @@ namespace DxFramework.FrameWork
             BackGroundFlag = false;
         }
 
-        public Text(int layer, Vector2 top, TextMaterial tex)
+        public TextBlock(int layer, Vector2 top, TextMaterial tex)
             : base(layer)
         {
             TextMaterial = new TextMaterial();
@@ -73,6 +67,16 @@ namespace DxFramework.FrameWork
                 setTextPosition(_textPos);
             }
         }
+
+        private Vector2 _size;
+
+        private TextPos _textPos;
+        
+        private bool _changeTextFlag = false;
+        
+        private Vector2 _textPosition;
+        
+        private TextMaterial _text;
 
         public override void draw()
         {

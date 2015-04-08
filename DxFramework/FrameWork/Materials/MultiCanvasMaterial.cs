@@ -5,9 +5,9 @@ using DxFramework.FrameWork.Utils;
 
 namespace DxFramework.FrameWork.Materials
 {
-    class MultiCanvasMaterial : List<ICanvasMaterialBase>, ICanvasMaterialBase
+    class MultiCanvasMaterial : List<ISquareMaterialBase>, ISquareMaterialBase
     {
-        public MultiCanvasMaterial(params ICanvasMaterialBase[] c)
+        public MultiCanvasMaterial(params ISquareMaterialBase[] c)
         {
             IsVisible = true;
             foreach (var itr in c)

@@ -15,9 +15,9 @@ namespace DxFramework
         public Page_1() : base() { }
         public override void subInit()
         {
-            var back = new Canvas(1, new Vector2(0, 0), new GraphicMaterial("resource/img/back.png"));
+            var back = new Square(1, new Vector2(0, 0), new GraphicMaterial("resource/img/back.png"));
 
-            var title = new Text(2, new Vector2(100, 50), new TextMaterial("DxFramework3.0", 52, "メイリオ", 2));
+            var title = new TextBlock(2, new Vector2(100, 50), new TextMaterial("DxFramework3.0", 52, "メイリオ", 2));
 
             var button1 = new Button(2, new Vector2(180, 200));
             button1.DraggableFlag = true;

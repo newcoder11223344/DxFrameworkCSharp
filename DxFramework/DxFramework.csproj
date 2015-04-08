@@ -38,16 +38,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrameWork\Bases\ShapeBase.cs" />
     <Compile Include="FrameWork\Text.cs" />
-    <Compile Include="FrameWork\Bases\ICanvasMaterialBase.cs" />
-    <Compile Include="FrameWork\Materials\CanvasMaterial.cs" />
+    <Compile Include="FrameWork\Bases\ISquareMaterialBase.cs" />
+    <Compile Include="FrameWork\Materials\SquareMaterial.cs" />
     <Compile Include="FrameWork\Utils\BasicInput.cs" />
     <Compile Include="FrameWork\Button.cs" />
     <Compile Include="FrameWork\Utils\Color.cs" />
     <Compile Include="FrameWork\Bases\AutoDrawnBase.cs" />
-    <Compile Include="FrameWork\Bases\IDrawableBase.cs" />
+    <Compile Include="FrameWork\Bases\IMaterialBase.cs" />
     <Compile Include="DxDLL.cs" />
-    <Compile Include="FrameWork\Canvas.cs" />
+    <Compile Include="FrameWork\Square.cs" />
     <Compile Include="FrameWork\Materials\MultiCanvasMaterial.cs" />
     <Compile Include="FrameWork\Utils\PageManager.cs" />
     <Compile Include="FrameWork\Materials\TextMaterial.cs" />

@@ -7,7 +7,7 @@ using DxFramework.FrameWork.Utils;
 
 namespace DxFramework.FrameWork.Bases
 {
-    interface ICanvasMaterialBase : IDrawableBase
+    interface ISquareMaterialBase : IMaterialBase
     {
         Vector2 Size { get; set; }
     }

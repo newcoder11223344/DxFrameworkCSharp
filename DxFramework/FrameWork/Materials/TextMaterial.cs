@@ -6,7 +6,7 @@ using DxLibDLL;
 
 namespace DxFramework.FrameWork.Materials
 {
-    class TextMaterial : ICanvasMaterialBase
+    class TextMaterial : ISquareMaterialBase
     {
         private int _fontSize;
         private int _thick;

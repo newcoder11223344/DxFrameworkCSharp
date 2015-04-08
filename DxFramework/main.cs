@@ -15,7 +15,6 @@ namespace DxFramework
 			//DX.SetGraphMode(800, 600, 32);
 			if (DX.DxLib_Init() == -1) return;
 			DX.SetDrawScreen(DX.DX_SCREEN_BACK);
-		    PageManager.ActivePage = new Page_1();
 			//++++++++++++++++++++++++++initialized dxlib++++++++++++++++++++++++++++
 			
 			while (DX.ScreenFlip() == 0 && DX.ProcessMessage() == 0 && DX.ClearDrawScreen() == 0)

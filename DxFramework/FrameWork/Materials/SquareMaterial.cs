@@ -5,15 +5,15 @@ using DxLibDLL;
 
 namespace DxFramework.FrameWork.Materials
 {
-    class CanvasMaterial : ICanvasMaterialBase
+    class SquareMaterial : ISquareMaterialBase
     {
-        public CanvasMaterial()
+        public SquareMaterial()
             : this(new Vector2(100, 50))
         {
             IsVisible = true;
         }
 
-        public CanvasMaterial(Vector2 size)
+        public SquareMaterial(Vector2 size)
         {
             IsVisible = true;
             Size = size;

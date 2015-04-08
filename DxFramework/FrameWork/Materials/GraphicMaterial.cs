@@ -4,7 +4,7 @@ using DxLibDLL;
 
 namespace DxFramework.FrameWork.Materials
 {
-    class GraphicMaterial : CanvasMaterial
+    class GraphicMaterial : SquareMaterial
     {
         public GraphicMaterial()
         {  

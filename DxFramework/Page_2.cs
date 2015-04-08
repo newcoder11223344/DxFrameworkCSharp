@@ -15,7 +15,7 @@ namespace DxFramework
         public override void
        subInit()
         {
-            var back = new Canvas(1, new Vector2(0, 0), new GraphicMaterial("resource/img/back.png"));
+            var back = new Square(1, new Vector2(0, 0), new GraphicMaterial("resource/img/back.png"));
             var GraphButton = new Button(1,new Vector2(0,0), () =>
             {
                 PageManager.changPage(typeof(Page_1));

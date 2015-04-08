@@ -3,7 +3,7 @@ using DxFramework.FrameWork.Utils;
 
 namespace DxFramework.FrameWork.Bases
 {
-    interface IDrawableBase
+    interface IMaterialBase
     {
         Action<Vector2> DrawAction { get; }
 

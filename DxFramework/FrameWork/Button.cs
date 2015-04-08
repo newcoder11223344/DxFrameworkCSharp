@@ -7,7 +7,7 @@ using DxLibDLL;
 
 namespace DxFramework.FrameWork
 {
-    internal class Button : Text
+    internal class Button : TextBlock
     {
         public Button(int layer)
             : base(layer)
@@ -46,7 +46,7 @@ namespace DxFramework.FrameWork
         {
             BackGroundFlag = true;
             Size = new Vector2(100, 50);
-            Canvas = new MultiCanvasMaterial(new CanvasMaterial(Size), new CanvasMaterial(Size), new CanvasMaterial(Size), new CanvasMaterial(Size));
+            Canvas = new MultiCanvasMaterial(new SquareMaterial(Size), new SquareMaterial(Size), new SquareMaterial(Size), new SquareMaterial(Size));
             BunedFlag = false;
             changeColor(new Color(200, 200, 200), new Color(0, 0, 0));
             setTextPosition(TextPos.Mid);
@@ -60,25 +60,25 @@ namespace DxFramework.FrameWork
 
         public bool BunedFlag { get; set; } //有効かどうか
 
-        public ICanvasMaterialBase DefaltCanvas 　// 通常時描画対象
+        public ISquareMaterialBase DefaltCanvas 　// 通常時描画対象
         {
             get { return Canvas[0]; }
             set { Canvas[0] = value; }
         }
 
-        public ICanvasMaterialBase MousOnCanvas // マウスオーバー時描画対象
+        public ISquareMaterialBase MousOnCanvas // マウスオーバー時描画対象
         {
             get { return Canvas[1]; }
             set { Canvas[1] = value; }
         }
 
-        public ICanvasMaterialBase ClickedCanvas // クリック時描画対象
+        public ISquareMaterialBase ClickedCanvas // クリック時描画対象
         {
             get { return Canvas[2]; }
             set { Canvas[2] = value; }
         }
 
-        public ICanvasMaterialBase BunedCanvas // 失効時描画対象
+        public ISquareMaterialBase BunedCanvas // 失効時描画対象
         {
             get { return Canvas[3]; }
             set { Canvas[3] = value; }
@@ -102,15 +102,15 @@ namespace DxFramework.FrameWork
 
         public void changeColor(Color backgroundColor,Color outlineColor)
         {
-            foreach (var itr in Canvas.OfType<CanvasMaterial>())
+            foreach (var itr in Canvas.OfType<SquareMaterial>())
             {
                 (itr).BackGroundColor = backgroundColor;
                 (itr).OutLineColor = outlineColor;
             }
 
-            ((CanvasMaterial)MousOnCanvas).BackGroundColor += new Color(20, 20, 20);
-            ((CanvasMaterial)ClickedCanvas).BackGroundColor += new Color(50, 50, 50);
-            ((CanvasMaterial)BunedCanvas).BackGroundColor += new Color(50, 50, 50);
+            ((SquareMaterial)MousOnCanvas).BackGroundColor += new Color(20, 20, 20);
+            ((SquareMaterial)ClickedCanvas).BackGroundColor += new Color(50, 50, 50);
+            ((SquareMaterial)BunedCanvas).BackGroundColor += new Color(50, 50, 50);
         }
         public void setColor(Color backgroundColor)
         {
