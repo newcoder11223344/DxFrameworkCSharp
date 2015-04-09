@@ -1,5 +1,8 @@
 ﻿using System;
 using DxFramework;
+using DxFramework.FrameWork;
+using DxFramework.FrameWork.Utils;
+
 class test
 {
 	public static void consoletest()
