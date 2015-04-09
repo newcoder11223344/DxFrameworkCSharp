@@ -5,7 +5,6 @@ namespace DxFramework.FrameWork.Bases
 {
     abstract class AutoDrawnBase
     {
-        
         static Stack<Action<AutoDrawnBase>> autoAddFuncList = new Stack<Action<AutoDrawnBase>>();
 
         public static void SetAutoAddFunc(Action<AutoDrawnBase> addlistfunc)
